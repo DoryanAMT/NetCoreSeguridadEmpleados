@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NetCoreSeguridadEmpleados.Filters;
 using NetCoreSeguridadEmpleados.Models;
 using NetCoreSeguridadEmpleados.Repositories;
 
@@ -21,6 +22,13 @@ namespace NetCoreSeguridadEmpleados.Controllers
         {
             Empleado empleado = await this.repo.FindEmpleadoAsync(idEmpleado);
             return View(empleado);
+        }
+        [AuthorizeEmpleados]
+        public async Task<IActionResult> PerfilEmpleado
+            ()
+        {
+            //Empleado empleado = await this.repo.FindEmpleadoAsync(idEmpleado);
+            return View();
         }
     }
 }
