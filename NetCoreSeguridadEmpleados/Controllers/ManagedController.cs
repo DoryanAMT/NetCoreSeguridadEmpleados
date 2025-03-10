@@ -75,5 +75,10 @@ namespace NetCoreSeguridadEmpleados.Controllers
                 CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index", "Home");
         }
+
+        public IActionResult ErrorAcceso()
+        {
+            return View();
+        }
     }
 }

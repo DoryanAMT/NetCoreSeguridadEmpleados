@@ -24,11 +24,20 @@ namespace NetCoreSeguridadEmpleados.Controllers
             return View(empleado);
         }
         [AuthorizeEmpleados]
-        public async Task<IActionResult> PerfilEmpleado
-            ()
+        public async Task<IActionResult> PerfilEmpleado()
         {
             //Empleado empleado = await this.repo.FindEmpleadoAsync(idEmpleado);
             return View();
+        }
+        [AuthorizeEmpleados]
+        public async Task<IActionResult> Compis()
+        {
+            //  RECUPERAMOS EL DATO DEL CLAIM DE Departamento
+            string Departamento =
+                HttpContext.User.FindFirst("Departamento").Value;
+            int idDepartamento = int.Parse(Departamento);
+            List<Empleado> empleados = await this.repo.GetEmpleadosDepartamentoAsync(idDepartamento);
+            return View(empleados);
         }
     }
 }

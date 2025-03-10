@@ -25,7 +25,8 @@ builder.Services.AddAuthentication(options =>
 }).AddCookie();
 
 //Add services to the container.
-builder.Services.AddControllersWithViews( options => options.EnableEndpointRouting = false);
+builder.Services.AddControllersWithViews( options => options.EnableEndpointRouting = false)
+    .AddSessionStateTempDataProvider();
 
 
 var app = builder.Build();

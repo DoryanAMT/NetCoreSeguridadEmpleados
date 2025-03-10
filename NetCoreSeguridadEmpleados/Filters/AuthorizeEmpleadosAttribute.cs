@@ -16,6 +16,16 @@ namespace NetCoreSeguridadEmpleados.Filters
             {
                 context.Result = this.GetRoute("Managed", "Login");
             }
+            else
+            {
+                //  COMPROBAMOS LOS ROLES DE ACCESO
+                if (user.IsInRole("PRESIDENTE") == false
+                    && user.IsInRole("DIRECTOR") == false
+                    && user.IsInRole("ANALISTA") == false)
+                {
+                    context.Result = this.GetRoute("Managed", "ErrorAcceso");
+                }
+            }
         }
 
         //  TENDREMOS MULTIPLES REDIRECCIONES , POR LO QUE CREAREMOS UN
